@@ -1,5 +1,4 @@
 #include "InputManager.h"
-#include <raylib.h>
 void InputManager::Update()
 {
 	GetKeyDown();

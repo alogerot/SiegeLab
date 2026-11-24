@@ -57,6 +57,8 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>$(SolutionDir)Cyclone\include;$(SolutionDir)SiegeLab_Library;$(SolutionDir)packages\raylib.6.2.0\build\native\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -87,6 +89,8 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>$(SolutionDir)Cyclone\include;$(SolutionDir)SiegeLab_Library;$(SolutionDir)packages\raylib.6.2.0\build\native\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -108,6 +112,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Cyclone\Cyclone.vcxproj">
+      <Project>{6023792b-c9c2-4fae-a3f2-6e68eb6d5b94}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\SiegeLab_Library\SiegeLab_Library.vcxproj">
       <Project>{c034a437-ebea-479c-aa26-67f6f45dbca7}</Project>
     </ProjectReference>

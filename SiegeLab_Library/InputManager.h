@@ -1,5 +1,6 @@
 #pragma once
 #include <map>
+#include <raylib.h>
 class InputManager
 {
 public:
