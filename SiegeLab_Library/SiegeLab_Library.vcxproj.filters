@@ -64,9 +64,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <None Include="ObjectPool.inl">
       <Filter>Fichiers d%27en-tête</Filter>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

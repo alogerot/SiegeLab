@@ -1,46 +1,83 @@
 #pragma once
 #include <vector>
-#include <memory>
 
-template<typename Type>
 struct EntityId
 {
-	Type slot;
+	int slot;
 	int generation;
 };
-template<typename Type>
+
+
+
+template<typename Type, int max_size>
 class ObjectPool
 {
+	
+	struct PoolSlot
+	{
+		Type* data;
+		int generation;
+	};
+
 private:
 
-	EntityId m_obj_Pool[];
-	int m_actual_id = 0;
-	int m_max_capacity;
+	std::vector<PoolSlot> m_obj_Pool;
+	std::vector<int> m_free_slots;
 
 public:
-	ObjectPool(int _capacity = 3);
-	void create();
-	Type get(int id);
-	void destroy(int id);
+	ObjectPool();
+	template<typename... Args>
+	void create(Args&&... _args);
+
+
+	Type* get(EntityId _id);
+	void destroy(EntityId _id);
 	void clear();
 };
 
 
 
-template<typename Type>
-ObjectPool<Type>::ObjectPool(int _capacity)
+template<typename Type,int max_size>
+ObjectPool<Type,max_size>::ObjectPool()
 {
-	m_obj_Pool = new Type[_capacity];
-	m_max_capacity = _capacity;
+	m_obj_Pool.resize(max_size);
+	m_free_slots.reserve(max_size);
+	for (int i = 0; i < max_size; ++i)
+	{
+		m_free_slots.push_back(i);
+	}
+
 }
 
-template<typename Type>
-void ObjectPool<Type>::create()
+template<typename Type,int max_size>
+Type* ObjectPool<Type, max_size>::get(EntityId _id)
 {
-	if (m_actual_id < m_max_capacity)
+	if (_id.slot < 0 || _id.slot >= max_size || m_obj_Pool[_id.slot].generation != _id.generation)
+		return nullptr;
+	return  m_obj_Pool[_id.slot].data;
+}
+
+template<typename Type, int max_size>
+void ObjectPool<Type, max_size>::destroy(EntityId _id)
+{
+	if (_id.slot < 0 || _id.slot >= max_size)
 		return;
-	m_obj_Pool[m_actual_id] = new Type();
-	m_actual_id++;
+	m_free_slots.push_back(_id.slot);
+	m_obj_Pool[_id.slot].generation++;
+	m_obj_Pool[_id.slot].data = nullptr;
+}
+
+template<typename Type, int max_size>
+template<typename... Args>
+void ObjectPool<Type, max_size>::create(Args&&... _args)
+{
+	if (m_free_slots.empty())
+		return;
+	int slot = m_free_slots.front();
+	m_free_slots.erase(m_free_slots.begin());
+	int generation = m_obj_Pool[slot].generation;
+	m_obj_Pool[slot] = PoolSlot{ new Type(std::forward<Args>(_args)...), generation};
+
 }
 
 
