@@ -1,8 +1,24 @@
 #include "CameraManager.h"
 #include "OrbitCamera.h"
 
-CameraManager::CameraManager(Vector3 _target, cyclone::real _radius , cyclone::real _yaw , cyclone::real _pitch )
+void CameraManager::update(float dt, Camera3D& camera)
 {
-	placement p = { _target, _radius, _yaw, _pitch };
-	m_camera_controller = new OrbitCamera(p);
+	m_camera_controller->update(dt, camera);
+}
+
+CameraManager::CameraManager(int a)
+{
+	if (a == 0)
+	{
+		m_camera_controller = new OrbitCamera(placement({0.f, 10.f, 10.f}, {0.f, 0.f, 0.f}, 10.f, 3.f, 1.5f));
+	}
+	else
+	{
+		m_camera_controller = nullptr;
+	}
+}
+
+const Camera CameraManager::getCamera()
+{
+	return m_camera_controller->getCamera();
 }

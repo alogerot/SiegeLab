@@ -1,18 +1,19 @@
 #pragma once
-#include "CameraController.h"
+#include "ICameraController.h"
 
 
 class CameraManager
 {
 private:
 
-	CameraController* m_camera_controller;
+	ICameraController* m_camera_controller;
 
 
 public:
 
-	CameraManager(Vector3 _target = {0,0,0},cyclone::real _radius = 3,cyclone::real _yaw = 10, cyclone::real _pitch = 10);
+	void update(float dt, Camera3D& camera);
+	CameraManager(int = 0);
 	void setActive();
-	Camera3D getCamera();
+	const Camera getCamera();
 };
 

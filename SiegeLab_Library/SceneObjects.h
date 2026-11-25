@@ -1,10 +1,10 @@
 #pragma once
 #include "ObjectPool.h"
-
+#include "GameEntity.h"
 
 class SceneObjects
 {
-	ObjectPool<int/*GameEntity*/, 10> m_obj_pool;
+	ObjectPool<GameEntity, 10> m_obj_pool;
 
 
 
@@ -12,10 +12,10 @@ class SceneObjects
 public:
 
 
-	template<typename... Args>
+	template<typename Type, typename... Args>
 	EntityId create_Entity(Args&& ... _args);
 
-	int/*GameEntity*/* get(EntityId _id);
+	GameEntity* get(EntityId _id);
 
 	void requestRemove(EntityId _id);
 
@@ -23,9 +23,9 @@ public:
 };
 
 
-template<typename... Args>
+template<typename Type,typename... Args>
 EntityId SceneObjects::create_Entity(Args&& ... _args)
 {
-	return m_obj_pool.create(std::forward<Args>(_args)...);
+	return m_obj_pool.create<Type>(std::forward<Args>(_args)...);
 }
 

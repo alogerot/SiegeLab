@@ -1,6 +1,6 @@
 #include "SceneObjects.h"
 
-int* SceneObjects::get(EntityId _id)
+GameEntity* SceneObjects::get(EntityId _id)
 {
     return m_obj_pool.get(_id);
 }
