@@ -10,8 +10,8 @@ protected:
 public:
 
 	virtual const std::string getType() { return "Projectile"; }
-	void draw() override;
-	virtual void registerPhysics(/*world*/) = 0;
+	virtual void draw() = 0;
+	virtual void registerPhysics() = 0;
 	void fire(/*settings*/);
 };
 

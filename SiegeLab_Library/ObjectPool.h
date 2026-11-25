@@ -33,6 +33,7 @@ public:
 	Type* get(EntityId _id);
 	void destroy(EntityId _id);
 	void clear();
+	void draw();
 };
 
 
@@ -76,6 +77,16 @@ void ObjectPool<Type, max_size>::clear()
 		m_obj_Pool[i].data = nullptr;
 		m_obj_Pool[i].generation ++;
 		m_free_slots.push_back(i);
+	}
+}
+
+template<typename Type, int max_size>
+inline void ObjectPool<Type, max_size>::draw()
+{
+	for (int i = 0; i < max_size; i++)
+	{
+		if(m_obj_Pool[i].data != nullptr)
+			m_obj_Pool[i].data->draw();
 	}
 }
 

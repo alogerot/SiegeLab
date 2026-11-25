@@ -14,3 +14,8 @@ void SceneObjects::flushRemovals()
 {
 	m_obj_pool.clear();
 }
+
+void SceneObjects::drawAll()
+{
+    m_obj_pool.draw();
+}
