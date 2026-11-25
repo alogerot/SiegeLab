@@ -99,7 +99,7 @@ TEST(GP_T2, GO01)
 
 TEST(GP_T3, C01)
 {
-	placement p{ {2,1,0},10,0,20 };
+	//placement p{ {2,1,0},10,0,20 };
 
 
 

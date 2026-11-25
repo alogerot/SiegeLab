@@ -3,10 +3,10 @@
 
 void CameraManager::update(float dt, Camera3D& camera)
 {
-	m_camera_controller->update(dt, camera);
+	m_camera_controller->update(input, dt, camera);
 }
 
-CameraManager::CameraManager(int a)
+CameraManager::CameraManager(int a, InputManager* _input):input(_input)
 {
 	if (a == 0)
 	{

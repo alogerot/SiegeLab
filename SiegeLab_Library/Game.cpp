@@ -14,12 +14,13 @@ void Game::Run()
     const int screenHeight = 450;
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - 3d camera mode");
-	CameraManager camManager(0);
+    InputManager input;
+	CameraManager camManager(0, &input);
     // Define the camera to look into our 3d world
     Camera3D camera = camManager.getCamera();
 
 
-    Vector3 cubePosition = { 0.0f, 0.0f, 0.0f };
+    Vector3 cubePosition = { 0.0f, 1.0f, 0.0f };
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
@@ -27,6 +28,7 @@ void Game::Run()
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
+        input.Update();
         // Update
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ICameraController.h"
+#include "InputManager.h"
 
 struct placement
 {
@@ -9,7 +10,8 @@ struct placement
 	cyclone::real radius;
 	cyclone::real height;
 	cyclone::real speed;
-	cyclone::real angle;
+	cyclone::real yaw;
+	cyclone::real pitch;
 
 	placement(Vector3 pos = { 0,0,0 },Vector3 targ = { 0,0,0 },cyclone::real rad = 5, cyclone::real h = 0, cyclone::real spd = 1)
 	{
@@ -18,7 +20,8 @@ struct placement
 		radius = rad;
 		height = h;
 		speed = spd;
-		angle = 0;
+		yaw = 0;
+		pitch = 0;
 	}
 
 	void clear()
@@ -27,7 +30,8 @@ struct placement
 		target = { 0,0,0 };
 		radius = -1;
 		speed = 0;
-		angle = 0;
+		yaw = 0;
+		pitch = 0;
 	}
 };
 
@@ -42,7 +46,7 @@ private:
 public:
 	OrbitCamera();
 	OrbitCamera(placement _init_data);
-	void update(/*InputController*/float dt, Camera3D& camera) override;
+	void update(InputManager* input, float dt, Camera3D& camera) override;
 	void reset() override;
 	const Camera getCamera() override;
 	void set_data(placement _data);
