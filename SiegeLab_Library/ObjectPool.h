@@ -27,7 +27,7 @@ private:
 public:
 	ObjectPool();
 	template<typename... Args>
-	void create(Args&&... _args);
+	EntityId create(Args&&... _args);
 
 
 	Type* get(EntityId _id);
@@ -68,16 +68,29 @@ void ObjectPool<Type, max_size>::destroy(EntityId _id)
 }
 
 template<typename Type, int max_size>
+void ObjectPool<Type, max_size>::clear()
+{
+	for (int i = 0;i < m_obj_Pool.size();i++)
+	{
+		delete m_obj_Pool[i].data;
+		m_obj_Pool[i].data = nullptr;
+		m_obj_Pool[i].generation ++;
+		m_free_slots.push_back(i);
+	}
+}
+
+template<typename Type, int max_size>
 template<typename... Args>
-void ObjectPool<Type, max_size>::create(Args&&... _args)
+EntityId ObjectPool<Type, max_size>::create(Args&&... _args)
 {
 	if (m_free_slots.empty())
-		return;
+		return EntityId{ -1,-1 };
 	int slot = m_free_slots.front();
 	m_free_slots.erase(m_free_slots.begin());
 	int generation = m_obj_Pool[slot].generation;
 	m_obj_Pool[slot] = PoolSlot{ new Type(std::forward<Args>(_args)...), generation};
 
+	return EntityId{ slot, generation };
 }
 
 
