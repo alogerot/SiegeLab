@@ -99,15 +99,19 @@ TEST(GP_T2, GO01)
 
 TEST(GP_T3, C01)
 {
-	//placement p{ {2,1,0},10,0,20 };
-
-
-
-	//camTest.set_data(p);
-
-
-
-	EXPECT_EQ(1, 1);
+	placement p;
+	p.target = { 2,1,0 };
+	p.pitch = 20;
+	p.yaw = 0;
+	p.radius = 10;
+	Camera3D cam;
+	OrbitCamera camera;
+	camera.set_data(p);
+	camera.update(nullptr, 1 / 60, cam);
+	EXPECT_EQ(cam.position.x, 2); //, 4.4202, 9.3969));
+	EXPECT_EQ(cam.position.y, 2);
+	EXPECT_EQ(cam.position.z, 2);
+	
 }
 TEST(GP_M2, L01)
 {
