@@ -125,7 +125,15 @@ TEST(GP_T3, C01)
 						delta.y * delta.y +
 						delta.z * delta.z);
 	EXPECT_EQ(distance, 10);
-	
+}
+TEST(GP_T3, C02)
+{
+	placement p({ 0.f, 10.f, 10.f }, { 0.f, 0.f, 0.f }, 10.f, 4.f, 25.f, 3.f, 1.5f, 10.f, 80.f);
+	p.pitch = -30;
+	p.radius = 2;
+	Camera3D cam;
+	OrbitCamera camera(p);
+
 }
 TEST(GP_M2, L01)
 {
