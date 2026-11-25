@@ -13,7 +13,7 @@ struct placement
 	cyclone::real yaw;
 	cyclone::real pitch;
 
-	placement(Vector3 pos = { 0,0,0 },Vector3 targ = { 0,0,0 },cyclone::real rad = 5, cyclone::real h = 0, cyclone::real spd = 1)
+	placement(Vector3 _pos = { 0,0,0 },Vector3 _targ = { 0,0,0 },cyclone::real _rad = 5, cyclone::real _h = 0, cyclone::real _spd = 1)
 	{
 		position = pos;
 		target = targ;

@@ -4,7 +4,7 @@
 class HeavyProjectile : public Projectile
 {
 public:
-	HeavyProjectile() : Projectile() { m_sphere = cyclone::CollisionSphere(); }
+	HeavyProjectile();
 	void registerPhysics(/*world*/) override;
 	const std::string getType() override;
 };

@@ -12,7 +12,7 @@ private:
 
 public:
 
-	void update(float dt, Camera3D& camera);
+	void update(float _dt, Camera3D& _camera);
 	CameraManager(int = 0, InputManager* _input = nullptr);
 	void setActive();
 	const Camera getCamera();

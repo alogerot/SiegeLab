@@ -3,6 +3,10 @@
 
 #include "Game.h"
 #include "CameraManager.h"
+#include "SceneObjects.h"
+#include "PillarBlock.h"
+#include "StandardProjectile.h"
+#include "LevelBuilder.h"
 
 #include <raylib.h>
 
@@ -20,7 +24,11 @@ void Game::Run()
     Camera3D camera = camManager.getCamera();
 
 
-    Vector3 cubePosition = { 0.0f, 1.0f, 0.0f };
+	SceneObjects sceneObjects;
+    LevelBuilder level;
+    level.buildPillarCube(sceneObjects);
+    
+
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
@@ -43,8 +51,7 @@ void Game::Run()
         camManager.update(GetFrameTime(), camera);
         BeginMode3D(camera);
 
-        DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, RED);
-        DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, MAROON);
+        sceneObjects.drawAll();
 
         DrawGrid(10, 1.0f);
 
