@@ -105,12 +105,26 @@ TEST(GP_T3, C01)
 	p.yaw = 0;
 	p.radius = 10;
 	Camera3D cam;
-	OrbitCamera camera;
+	OrbitCamera camera(p);
+	camera.update(nullptr, 1 / 60, cam);
+	EXPECT_NEAR(cam.position.x, 2, 1e-3);
+	EXPECT_NEAR(cam.position.y, 4.4202, 1e-3);
+	EXPECT_NEAR(cam.position.z, 9.3969, 1e-3);
+
+	p.yaw = 90;
+	p.pitch = 30;
 	camera.set_data(p);
 	camera.update(nullptr, 1 / 60, cam);
-	EXPECT_EQ(cam.position.x, 2); //, 4.4202, 9.3969));
-	EXPECT_EQ(cam.position.y, 2);
-	EXPECT_EQ(cam.position.z, 2);
+	EXPECT_NEAR(cam.position.x, 10.6603, 1e-3);
+	EXPECT_NEAR(cam.position.y, 6, 1e-3);
+	EXPECT_NEAR(cam.position.z, 0, 1e-3);
+	Vector3 delta = { cam.position.x - cam.target.x,
+					cam.position.y - cam.target.y,
+					cam.position.z - cam.target.z  };
+	float distance = sqrt(delta.x * delta.x +
+						delta.y * delta.y +
+						delta.z * delta.z);
+	EXPECT_EQ(distance, 10);
 	
 }
 TEST(GP_M2, L01)
