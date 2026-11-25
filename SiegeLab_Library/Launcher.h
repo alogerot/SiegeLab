@@ -7,39 +7,36 @@ public:
 	Vector3 origin;
 	float projectile_speed = 0;
 	ProjectileKind projectile_kind;
-	ShotSettings(float yaw, float pitch, ProjectileKind _kind);
-	void RayVectorNormalize(Vector3& vector);
-	/// <summary>
-	/// modifie le vecteur direction en ajoutent l'angle mis en paramètre. 
-	/// </summary>
-	/// <param name="angle">angle est en degré et il sera convertie en radians pour faire le vecteur direction</param>
-	void SetAzimuth(float angle);
-
-	/// <summary>
-	/// modifie le vecteur direction en ajoutent l'angle mis en paramètre. 
-	/// </summary>
-	/// <param name="angle">angle est en degré et il sera convertie en radians pour faire le vecteur direction</param>
-	void SetElevation(float angle);
-
-	Vector3 GetDirection();
+	ShotSettings();
+	ShotSettings(ProjectileKind _kind);
+	
+	Vector3 direction{1,0,0};
 private:
-	Vector3 direction{0,1,0};
 };
 
 
 class Launcher
 {
 public:
-	Launcher(float _yaw = 0, float _pitch = 0, float _projectile_speed = 0, InputManager* input = nullptr);
+	Launcher();
+	Launcher(float _yaw, float _pitch, float _projectile_speed, InputManager* input = nullptr, ProjectileKind _kind = ProjectileKind::Light);
 	ShotSettings shot_settings;
+	void RayVectorNormalize(Vector3& vector);
+
+
 	void SetYaw(float angle);
 	void ChangeYaw(float angle);
+	void SetAzimuth(float angle);
+
 	void SetPitch(float angle);
 	void ChangePitch(float angle);
+	void SetElevation(float angle);
 
 	float GetYaw();
 	float GetPitch();
 	float GetProjectileSpeed();
+
+	void Update(float dt);
 private:
 	InputManager* input;
 	float yaw = 0, yaw_min = -30, yaw_max = 30;
