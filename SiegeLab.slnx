@@ -6,5 +6,5 @@
   <Project Path="Cyclone/Cyclone.vcxproj" Id="6023792b-c9c2-4fae-a3f2-6e68eb6d5b94" />
   <Project Path="SiegeLab/SiegeLab.vcxproj" Id="62e4a79a-8b3a-4055-b59d-89ab466f9958" />
   <Project Path="SiegeLab_Library/SiegeLab_Library.vcxproj" Id="c034a437-ebea-479c-aa26-67f6f45dbca7" />
-  <Project Path="Unit-Tests/Unit-Tests.vcxproj" Id="7c282877-220a-40e0-9f59-78da36a97275" />
+  <Project Path="Unit-Tests/Unit-Tests.vcxproj" Id="b4e5048e-6eaa-4451-99c3-a4534a622953" />
 </Solution>

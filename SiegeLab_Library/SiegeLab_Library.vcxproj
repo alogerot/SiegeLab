@@ -153,14 +153,29 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CameraManager.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="ICameraController.h" />
+    <ClInclude Include="GameEntity.h" />
+    <ClInclude Include="HeavyProjectile.h" />
+    <ClInclude Include="ObjectPool.h" />
+    <ClInclude Include="OrbitCamera.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Launcher.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Projectile.h" />
+    <ClInclude Include="SceneObjects.h" />
+    <ClInclude Include="StandardProjectile.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="ICameraController.cpp" />
+    <ClCompile Include="GameEntity.cpp" />
+    <ClCompile Include="HeavyProjectile.cpp" />
+    <ClCompile Include="ObjectPool.cpp" />
+    <ClCompile Include="OrbitCamera.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Launcher.cpp" />
     <ClCompile Include="pch.cpp">
@@ -169,6 +184,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="SceneObjects.cpp" />
+    <ClCompile Include="StandardProjectile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cyclone\Cyclone.vcxproj">
@@ -176,6 +194,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ObjectPool.inl" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
