@@ -6,9 +6,9 @@ OrbitCamera::OrbitCamera(placement _init_data)
 	m_data = _init_data;
 }
 
-void OrbitCamera::update(float dt, Camera3D& camera)
+void OrbitCamera::update(float _dt, Camera3D& _camera)
 {
-	m_data.angle += m_data.speed * dt;
+	m_data.angle += m_data.speed * _dt;
 	Vector3 newPos = 
 	{ 
 		m_data.target.x + m_data.radius * cos(m_data.angle), 
@@ -16,7 +16,7 @@ void OrbitCamera::update(float dt, Camera3D& camera)
 		m_data.target.z + m_data.radius * sin(m_data.angle) 
 	};
 	m_data.position = newPos;
-	camera = getCamera();
+	_camera = getCamera();
 }
 
 void OrbitCamera::set_data(placement _data)

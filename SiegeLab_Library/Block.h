@@ -11,9 +11,6 @@ class Block : public GameEntity
 {
 protected:
 
-	
-
-
 	cyclone::CollisionBox m_collision_box;
 	
 public:

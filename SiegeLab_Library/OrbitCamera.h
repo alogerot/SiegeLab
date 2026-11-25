@@ -11,13 +11,13 @@ struct placement
 	cyclone::real speed;
 	cyclone::real angle;
 
-	placement(Vector3 pos = { 0,0,0 },Vector3 targ = { 0,0,0 },cyclone::real rad = 5, cyclone::real h = 0, cyclone::real spd = 1)
+	placement(Vector3 _pos = { 0,0,0 },Vector3 _targ = { 0,0,0 },cyclone::real _rad = 5, cyclone::real _h = 0, cyclone::real _spd = 1)
 	{
-		position = pos;
-		target = targ;
-		radius = rad;
-		height = h;
-		speed = spd;
+		position = _pos;
+		target = _targ;
+		radius = _rad;
+		height = _h;
+		speed = _spd;
 		angle = 0;
 	}
 
@@ -42,7 +42,7 @@ private:
 public:
 	OrbitCamera();
 	OrbitCamera(placement _init_data);
-	void update(/*InputController*/float dt, Camera3D& camera) override;
+	void update(/*InputController*/float _dt, Camera3D& _camera) override;
 	void reset() override;
 	const Camera getCamera() override;
 	void set_data(placement _data);

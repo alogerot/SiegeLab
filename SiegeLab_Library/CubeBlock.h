@@ -9,7 +9,7 @@ private:
 
 
 public:
-	CubeBlock(base_transform_data, float size);
+	CubeBlock(base_transform_data, float _size);
 	void draw() override;
 	void configurePhysics();
 };

@@ -11,7 +11,7 @@ private:
 
 public:
 
-	void update(float dt, Camera3D& camera);
+	void update(float _dt, Camera3D& _camera);
 	CameraManager(int = 0);
 	void setActive();
 	const Camera getCamera();
