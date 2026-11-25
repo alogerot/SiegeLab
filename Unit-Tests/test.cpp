@@ -28,3 +28,11 @@ TEST(GP_M2, L02)
 	EXPECT_NEAR(magnitude1,1,1e-4);
 	EXPECT_NEAR(magnitude2,1,1e-4);
 }
+TEST(GP_M2, L03)
+{
+	//(45°, −10°, 30 m / s)
+	Launcher launcher(45, -10, 30);
+	EXPECT_EQ(launcher.GetYaw(), 30);
+	EXPECT_EQ(launcher.GetPitch(), 5);
+	EXPECT_EQ(launcher.GetProjectileSpeed(), 22);
+}
