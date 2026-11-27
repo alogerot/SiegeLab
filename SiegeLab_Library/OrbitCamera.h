@@ -7,21 +7,28 @@ struct placement
 {
 	Vector3 position;
 	Vector3 target;
-	cyclone::real radius;
+	cyclone::real radius , min_radius, max_radius;
 	cyclone::real height;
 	cyclone::real speed;
 	cyclone::real yaw;
-	cyclone::real pitch;
+	cyclone::real pitch, min_pitch, max_pitch;
 
-	placement(Vector3 _pos = { 0,0,0 },Vector3 _targ = { 0,0,0 },cyclone::real _rad = 5, cyclone::real _h = 0, cyclone::real _spd = 1)
+	placement(Vector3 pos = { 0,0,0 },Vector3 targ = { 0,0,0 },
+		cyclone::real rad = 5,cyclone::real _min_rad = 4, cyclone::real _max_rad = 25,
+		cyclone::real h = 0,cyclone::real spd = 1, 
+		cyclone::real _min_pitch = 10, cyclone::real _max_pitch = 80)
 	{
 		position = pos;
 		target = targ;
 		radius = rad;
+		min_radius = _min_rad;
+		max_radius = _max_rad;
 		height = h;
 		speed = spd;
 		yaw = 0;
 		pitch = 0;
+		min_pitch = _min_pitch;
+		max_pitch = _max_pitch;
 	}
 
 	void clear()
@@ -50,5 +57,8 @@ public:
 	void reset() override;
 	const Camera getCamera() override;
 	void set_data(placement _data);
+	float GetRadius();
+	float GetPitch();
+	float GetYaw();
 };
 

@@ -9,6 +9,7 @@ void InputManager::Update()
 	Vector2 old_mouse_pos = mouse_pos;
 	mouse_pos = GetMousePosition();
 	mouse_delta = { mouse_pos.x - old_mouse_pos.x, mouse_pos.y - old_mouse_pos.y };
+	mouse_wheel_delta = GetMouseWheelMove();
 }
 
 void InputManager::GetKeyDown()
