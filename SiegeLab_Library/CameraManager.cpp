@@ -1,14 +1,14 @@
 #include "CameraManager.h"
 #include "OrbitCamera.h"
 
-void CameraManager::update(float dt, Camera3D& camera)
+void CameraManager::update(float _dt, Camera3D& _camera)
 {
-	m_camera_controller->update(input, dt, camera);
+	m_camera_controller->update(input, _dt, _camera);
 }
 
-CameraManager::CameraManager(int a, InputManager* _input):input(_input)
+CameraManager::CameraManager(int _a, InputManager* _input):input(_input)
 {
-	if (a == 0)
+	if (_a == 0)
 	{
 		m_camera_controller = new OrbitCamera(placement({0.f, 10.f, 10.f}, {0.f, 0.f, 0.f}, 10.f,4.f,25.f, 3.f, 20.f,10.f,80.f));
 	}

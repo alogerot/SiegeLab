@@ -18,8 +18,9 @@ public:
 	GameEntity* get(EntityId _id);
 
 	void requestRemove(EntityId _id);
-
 	void flushRemovals();
+
+	void drawAll();
 };
 
 

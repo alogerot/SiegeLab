@@ -4,12 +4,15 @@
 class StandardProjectile : public Projectile
 {
 
+private:
+
+
 
 public:
-	StandardProjectile() : Projectile() { m_sphere = cyclone::CollisionSphere(); }
+	StandardProjectile(base_transform_data);
 
 	const std::string getType() override;
-
-	void registerPhysics(/*world*/) override;
+	void draw() override;
+	void configurePhysics();
 };
 
