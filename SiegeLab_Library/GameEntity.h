@@ -35,5 +35,12 @@ public:
 	virtual const std::string getType() { return "GameEntity"; }
 	virtual void draw() = 0;
 	virtual void registerPhysics(/*world*/) = 0;
+	virtual void update(float dt) = 0;
+	base_transform_data getTransform()
+	{
+		Vector3 pos(m_body.getPosition().x, m_body.getPosition().y, m_body.getPosition().z);
+		return base_transform_data{ pos };
+	}
+	
 };
 

@@ -155,6 +155,7 @@
   <ItemGroup>
     <ClInclude Include="Block.h" />
     <ClInclude Include="CameraManager.h" />
+    <ClInclude Include="Canon.h" />
     <ClInclude Include="CubeBlock.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Game.h" />
@@ -175,6 +176,7 @@
   <ItemGroup>
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="CameraManager.cpp" />
+    <ClCompile Include="Canon.cpp" />
     <ClCompile Include="CubeBlock.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="ICameraController.cpp" />

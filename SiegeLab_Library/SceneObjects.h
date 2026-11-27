@@ -2,6 +2,9 @@
 #include "ObjectPool.h"
 #include "GameEntity.h"
 
+
+class Launcher;
+
 class SceneObjects
 {
 	ObjectPool<GameEntity, 10> m_obj_pool;
@@ -11,16 +14,17 @@ class SceneObjects
 
 public:
 
-
+	SceneObjects();
 	template<typename Type, typename... Args>
 	EntityId create_Entity(Args&& ... _args);
-
+	void setupCanon(Launcher* _launcher);
 	GameEntity* get(EntityId _id);
 
 	void requestRemove(EntityId _id);
 	void flushRemovals();
 
 	void drawAll();
+	void updateAll(float dt);
 };
 
 

@@ -1,6 +1,11 @@
 #include "Launcher.h"
 #include <raymath.h>
 #include <algorithm>
+#include "StandardProjectile.h"
+#include "HeavyProjectile.h"
+#include <iostream>
+#include "Canon.h"
+
 ShotSettings::ShotSettings()
 {
 }
@@ -8,6 +13,8 @@ ShotSettings::ShotSettings(ProjectileKind _kind):projectile_kind(_kind)
 {
 	
 }
+
+
 void Launcher::RayVectorNormalize(Vector3& vector)
 {
 	float magnitude = sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
@@ -24,6 +31,7 @@ void Launcher::SetAzimuth(float angle)
 	RayVectorNormalize(shot_settings.direction);
 }
 
+
 void Launcher::SetElevation(float angle)
 {
 	angle = angle * PI / 180;
@@ -39,7 +47,7 @@ Launcher::Launcher() :input(nullptr), projectile_speed(0)
 {
 }
 
-Launcher::Launcher(float _yaw, float _pitch, float _projectile_speed, InputManager* _input, ProjectileKind kind) : shot_settings(kind),
+Launcher::Launcher(float _yaw, float _pitch, float _projectile_speed, InputManager* _input, ProjectileKind kind, SceneObjects* s) : shot_settings(kind),
 																							input(_input)
 {
 	
@@ -47,7 +55,8 @@ Launcher::Launcher(float _yaw, float _pitch, float _projectile_speed, InputManag
 	SetPitch(_pitch);
 
 	projectile_speed = std::clamp(_projectile_speed, projectile_speed_min, projectile_speed_max);
-	
+	scene = s;
+	s->setupCanon(this);
 }
 
 void Launcher::SetYaw(float angle)
@@ -91,6 +100,8 @@ float Launcher::GetProjectileSpeed()
 	return projectile_speed;
 }
 
+
+
 void Launcher::Update(float dt)
 {
 	if (input == nullptr)
@@ -111,5 +122,23 @@ void Launcher::Update(float dt)
 		shot_settings.projectile_kind = ProjectileKind::Light;
 	if (input->keys_down[KEY_TWO])
 		shot_settings.projectile_kind = ProjectileKind::Heavy;
+	if (input->keys_down[KEY_SPACE])
+		shoot(dt);
+	m_shoot_cd -= dt;
+}
 
+void Launcher::shoot(float dt)
+{
+	if (m_shoot_cd > 0)
+	{
+		return;
+	}
+	switch (shot_settings.projectile_kind)
+	{
+	case ProjectileKind::Light:
+		std::cout << "shoot\n";
+		scene->create_Entity<StandardProjectile>(scene->get({ 0,0 })->getTransform(), shot_settings.direction * shot_settings.projectile_speed);
+		m_shoot_cd = 2;
+		break;
+	} 
 }

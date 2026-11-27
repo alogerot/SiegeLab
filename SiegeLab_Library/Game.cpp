@@ -3,12 +3,12 @@
 
 #include "Game.h"
 #include "CameraManager.h"
-#include "SceneObjects.h"
 #include "PillarBlock.h"
 #include "StandardProjectile.h"
 #include "LevelBuilder.h"
-
+#include "Launcher.h"
 #include <raylib.h>
+#include "Canon.h"
 
 void Game::Run()
 {
@@ -25,9 +25,12 @@ void Game::Run()
 
 
 	SceneObjects sceneObjects;
+    
+    Launcher launcher(0.f, 54.f, 15.f, &input, ProjectileKind::Light,&sceneObjects);
+    EntityId id = sceneObjects.create_Entity<StandardProjectile>(base_transform_data{ {-10,4,1} }, Vector3{12,2,1});
+
     LevelBuilder level;
     level.buildPillarCube(sceneObjects);
-    
 
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
@@ -37,6 +40,7 @@ void Game::Run()
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
         input.Update();
+        launcher.Update(GetFrameTime());
         // Update
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here
@@ -51,8 +55,9 @@ void Game::Run()
         camManager.update(GetFrameTime(), camera);
         BeginMode3D(camera);
 
-        sceneObjects.drawAll();
 
+        sceneObjects.drawAll();
+        sceneObjects.updateAll(GetFrameTime());
         DrawGrid(10, 1.0f);
 
         EndMode3D();

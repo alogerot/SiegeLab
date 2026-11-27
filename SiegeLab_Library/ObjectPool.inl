@@ -1,3 +1,4 @@
+#include "ObjectPool.h"
 #pragma once
 
 template<typename Type, int max_size>
@@ -49,6 +50,16 @@ inline void ObjectPool<Type, max_size>::draw()
 	{
 		if (m_obj_Pool[i].data != nullptr)
 			m_obj_Pool[i].data->draw();
+	}
+}
+
+template<typename Type, int max_size>
+inline void ObjectPool<Type, max_size>::update(float dt)
+{
+	for (int i = 0; i < max_size; i++)
+	{
+		if (m_obj_Pool[i].data != nullptr)
+			m_obj_Pool[i].data->update(dt);
 	}
 }
 

@@ -34,7 +34,9 @@ public:
 	void destroy(EntityId _id);
 	void clear();
 	void draw();
+	void update(float dt); //temporaire
 };
+
 
 
 

@@ -1,5 +1,7 @@
 #pragma once
 #include "InputManager.h"
+#include "SceneObjects.h"
+
 enum class ProjectileKind{Heavy, Light};
 class ShotSettings
 {
@@ -19,7 +21,7 @@ class Launcher
 {
 public:
 	Launcher();
-	Launcher(float _yaw, float _pitch, float _projectile_speed, InputManager* input = nullptr, ProjectileKind _kind = ProjectileKind::Light);
+	Launcher(float _yaw, float _pitch, float _projectile_speed, InputManager* input = nullptr, ProjectileKind _kind = ProjectileKind::Light, SceneObjects* s = nullptr);
 	ShotSettings shot_settings;
 	void RayVectorNormalize(Vector3& vector);
 
@@ -36,8 +38,15 @@ public:
 	float GetPitch();
 	float GetProjectileSpeed();
 
+	
+
 	void Update(float dt);
+
+	void shoot(float dt);
 private:
+
+	float m_shoot_cd;
+	SceneObjects* scene;
 	InputManager* input;
 	float yaw = 0, yaw_min = -30, yaw_max = 30;
 	float pitch = 0, pitch_min = 5, pitch_max = 55;

@@ -1,6 +1,9 @@
 #pragma once
 #include "GameEntity.h"
 
+
+
+
 class Projectile : public GameEntity
 {
 protected:
@@ -10,8 +13,7 @@ protected:
 public:
 
 	virtual const std::string getType() { return "Projectile"; }
-	virtual void draw() = 0;
-	virtual void registerPhysics() = 0;
-	void fire(/*settings*/);
+	void registerPhysics(/*world*/) override;
+	
 };
 

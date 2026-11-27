@@ -15,11 +15,11 @@ struct placement
 
 	placement(Vector3 _pos = { 0,0,0 },Vector3 _targ = { 0,0,0 },cyclone::real _rad = 5, cyclone::real _h = 0, cyclone::real _spd = 1)
 	{
-		position = pos;
-		target = targ;
-		radius = rad;
-		height = h;
-		speed = spd;
+		position = _pos;
+		target = _targ;
+		radius = _rad;
+		height = _h;
+		speed = _spd;
 		yaw = 0;
 		pitch = 0;
 	}
