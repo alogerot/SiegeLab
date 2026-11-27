@@ -26,7 +26,8 @@ void Game::Run()
 
 	SceneObjects sceneObjects;
     LevelBuilder level;
-    level.buildPillarCube(sceneObjects);
+    //level.buildPillarCube(sceneObjects);
+    level.BuildDestructionCage(sceneObjects);
     
 
 

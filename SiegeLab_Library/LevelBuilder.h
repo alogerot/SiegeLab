@@ -10,7 +10,7 @@ private:
 public:
 
 	void buildPillarCube(SceneObjects&);
-
+	void BuildDestructionCage(SceneObjects&);
 
 };
 

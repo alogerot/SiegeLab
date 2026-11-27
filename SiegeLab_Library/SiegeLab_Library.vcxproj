@@ -156,6 +156,7 @@
     <ClInclude Include="Block.h" />
     <ClInclude Include="CameraManager.h" />
     <ClInclude Include="CubeBlock.h" />
+    <ClInclude Include="DestructionBlock.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="ICameraController.h" />
@@ -176,6 +177,7 @@
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="CubeBlock.cpp" />
+    <ClCompile Include="DestructionBlock.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="ICameraController.cpp" />
     <ClCompile Include="GameEntity.cpp" />
