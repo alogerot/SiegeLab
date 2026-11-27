@@ -72,6 +72,9 @@
     <ClInclude Include="DestructionBlock.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="PhysicsWorld.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -126,6 +129,9 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="DestructionBlock.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsWorld.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
