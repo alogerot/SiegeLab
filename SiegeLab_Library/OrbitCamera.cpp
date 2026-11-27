@@ -13,9 +13,13 @@ void OrbitCamera::update(InputManager* input, float dt, Camera3D& camera)
 	{
 		if (input->mouse_button_down[MOUSE_BUTTON_RIGHT])
 		{
-			m_data.yaw -= input->mouse_delta.x * 1 / 5;
-			m_data.pitch += input->mouse_delta.y * 1 / 5;
+			m_data.yaw -= input->mouse_delta.x * 1/m_data.speed ;
+			m_data.pitch += input->mouse_delta.y * 1/m_data.speed ;
 		}
+		else if (input->keys_down[KEY_RIGHT])
+			m_data.yaw += m_data.speed * dt;
+		else if (input->keys_down[KEY_LEFT])
+			m_data.yaw -= m_data.speed * dt;
 		m_data.radius -= input->mouse_wheel_delta * dt * 30;
 	}
 	m_data.radius = std::clamp(m_data.radius, m_data.min_radius, m_data.max_radius);
@@ -50,4 +54,18 @@ const Camera OrbitCamera::getCamera()
 	camera.fovy = 45.0f;
 	camera.projection = CAMERA_PERSPECTIVE;
 	return camera;
+}
+
+float OrbitCamera::GetRadius()
+{
+	return m_data.radius;
+}
+
+float OrbitCamera::GetPitch()
+{
+	return m_data.pitch;
+}
+float OrbitCamera::GetYaw()
+{
+	return m_data.yaw;
 }

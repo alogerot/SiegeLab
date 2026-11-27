@@ -10,7 +10,7 @@ CameraManager::CameraManager(int a, InputManager* _input):input(_input)
 {
 	if (a == 0)
 	{
-		m_camera_controller = new OrbitCamera(placement({0.f, 10.f, 10.f}, {0.f, 0.f, 0.f}, 10.f,4.f,25.f, 3.f, 1.5f,10.f,80.f));
+		m_camera_controller = new OrbitCamera(placement({0.f, 10.f, 10.f}, {0.f, 0.f, 0.f}, 10.f,4.f,25.f, 3.f, 20.f,10.f,80.f));
 	}
 	else
 	{

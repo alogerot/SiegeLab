@@ -57,5 +57,8 @@ public:
 	void reset() override;
 	const Camera getCamera() override;
 	void set_data(placement _data);
+	float GetRadius();
+	float GetPitch();
+	float GetYaw();
 };
 

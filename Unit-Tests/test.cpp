@@ -133,6 +133,84 @@ TEST(GP_T3, C02)
 	p.radius = 2;
 	Camera3D cam;
 	OrbitCamera camera(p);
+	camera.update(nullptr, 1/60, cam);
+	EXPECT_EQ(camera.GetRadius(), p.min_radius);
+	EXPECT_EQ(camera.GetPitch(), p.min_pitch);
+	p.pitch = 100;
+	p.radius = 40;
+	camera.set_data(p);
+	camera.update(nullptr, 1/60, cam);
+	EXPECT_EQ(camera.GetRadius(), p.max_radius);
+	EXPECT_EQ(camera.GetPitch(), p.max_pitch);
+
+
+}
+TEST(GP_T3, C03)
+{
+	placement p({ 0,0,0 }, { 0,0,0 }, 10, 0, 100, 0, 0, 0, 100);
+	p.yaw = 30;
+	p.pitch = 20;
+	Camera3D cam;
+	OrbitCamera camera(p);
+	camera.update(nullptr, 1 / 60, cam);
+	EXPECT_NEAR(cam.position.x, 4.6985,1e-4);
+	EXPECT_NEAR(cam.position.y, 3.4202,1e-4);
+	EXPECT_NEAR(cam.position.z, 8.1380,1e-4);
+	p.yaw = 390;
+	camera.set_data(p);
+	camera.update(nullptr, 1 / 60, cam);
+	EXPECT_NEAR(cam.position.x, 4.6985, 1e-4);
+	EXPECT_NEAR(cam.position.y, 3.4202, 1e-4);
+	EXPECT_NEAR(cam.position.z, 8.1380, 1e-4);
+}
+TEST(GP_T3, C04)
+{
+	placement p({ 0,0,0 }, { 0,0,0 }, 10, 0, 100, 0, 90, 0, 100);
+	p.pitch = 0;
+	p.yaw = 0;
+	InputManager input;
+	input.keys_down[KEY_RIGHT] = true;
+	input.mouse_button_down[MOUSE_BUTTON_RIGHT] = false;
+	Camera3D cam;
+	OrbitCamera camera(p);
+	camera.update(&input, 0.5, cam);
+	EXPECT_NEAR(camera.GetYaw(), 45, 1e-3);
+	EXPECT_NEAR(cam.position.x, 7.0711, 1e-3);
+	EXPECT_NEAR(cam.position.y, 0, 1e-3);
+	EXPECT_NEAR(cam.position.z, 7.0711, 1e-3);
+
+	camera.set_data(p);
+	camera.update(&input, 0.25, cam);
+	camera.update(&input, 0.25, cam);
+	EXPECT_NEAR(camera.GetYaw(), 45, 1e-3);
+	EXPECT_NEAR(cam.position.x, 7.0711, 1e-3);
+	EXPECT_NEAR(cam.position.y, 0, 1e-3);
+	EXPECT_NEAR(cam.position.z, 7.0711, 1e-3);
+}
+TEST(GP_T3, C05)
+{
+	placement p({ 0,0,0 }, { 0,0,0 }, 10, 0, 100, 0, 4, 0, 100);
+	p.pitch = 0;
+	p.yaw = 0;
+	InputManager input;
+	input.mouse_delta = { -2*60,0 };
+	Camera3D cam;
+	OrbitCamera camera(p);
+	camera.update(&input, 1/60, cam);
+	EXPECT_NEAR(camera.GetYaw(), 30, 1e-3);
+	EXPECT_NEAR(cam.position.x, 5, 1e-3);
+	EXPECT_NEAR(cam.position.y, 0, 1e-3);
+	EXPECT_NEAR(cam.position.z, 8.6603, 1e-3);
+	camera.set_data(p);
+	input.mouse_delta = { -4 * 30,0 };
+	camera.update(&input, 1 / 30, cam);
+	EXPECT_NEAR(camera.GetYaw(), 30, 1e-3);
+	EXPECT_NEAR(cam.position.x, 5, 1e-3);
+	EXPECT_NEAR(cam.position.y, 0, 1e-3);
+	EXPECT_NEAR(cam.position.z, 8.6603, 1e-3);
+}
+TEST(GP_T3, C06)
+{
 
 }
 TEST(GP_M2, L01)
